@@ -35,26 +35,39 @@ exports.getMovieTopRate = (req, res, next) => {
 };
 
 exports.getMovieGenre = (req, res, next) => {
-  const movieGenre = [];
-  const page = req.params.page;
-  const genreId = +req.params.genreId;
-  movieList.fetchAll((movieList) => {
-    movieList.forEach((movie) => {
-      if (movie.genre_ids != undefined) {
-        const a = movie.genre_ids.filter((id) => id === genreId);
-        if (a.length > 0) movieGenre.push(movie);
-      }
-    });
-    genreList.fetchAll((genreList) => {
-      const genre_name = genreList.find((item) => item.id === genreId).name;
-      res.status(200).send({
-        results: movieGenre.slice(page * 20 - 20, page * 20),
-        page: page,
-        total_pages: Math.ceil(movieGenre.length / 20),
-        genre_name: genre_name,
+  if (req.params.genreId === undefined) {
+    res.status(400).send("Not found genre param");
+  } else {
+    const movieGenre = [];
+    const page = req.params.page;
+    const genreId = +req.params.genreId;
+    movieList.fetchAll((movieList) => {
+      movieList.forEach((movie) => {
+        if (movie.genre_ids != undefined) {
+          const a = movie.genre_ids.filter((id) => id === genreId);
+          if (a.length > 0) {
+            movieGenre.push(movie);
+          }
+        }
+      });
+      genreList.fetchAll((genreList) => {
+        const checkGenreId = genreList.filter((item) => item.id === genreId);
+        if (checkGenreId.length === 0) {
+          res.status(404).send("Not found that genre id");
+        } else {
+          const genre_name = genreList.filter(
+            (item) => item.id === genreId
+          ).name;
+          res.status(200).send({
+            results: movieGenre.slice(page * 20 - 20, page * 20),
+            page: page,
+            total_pages: Math.ceil(movieGenre.length / 20),
+            genre_name: genre_name,
+          });
+        }
       });
     });
-  });
+  }
 };
 
 exports.getMovieTrailer = (req, res, next) => {

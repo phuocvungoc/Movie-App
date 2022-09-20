@@ -12,9 +12,10 @@ router.get("/movies/trending/:page", movieListController.getMovieTrending);
 router.get("/movies/top-rate/:page", movieListController.getMovieTopRate);
 
 router.get(
-  "/movies/discover/:genreId/:page",
+  "/movies/discover/:page/:genreId",
   movieListController.getMovieGenre
 );
+router.get("/movies/discover/:page/", movieListController.getMovieGenre);
 
 router.get("/movies/video/:movieId", movieListController.getMovieTrailer);
 router.get("/movies/video/", movieListController.getMovieTrailer);
