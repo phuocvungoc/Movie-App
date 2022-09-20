@@ -16,4 +16,7 @@ router.get(
   movieListController.getMovieGenre
 );
 
+router.get("/movies/video/:movieId", movieListController.getMovieTrailer);
+router.get("/movies/video/", movieListController.getMovieTrailer);
+
 module.exports = router;

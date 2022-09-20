@@ -1,5 +1,6 @@
 const movieList = require("../models/movieList");
 const genreList = require("../models/genreList");
+const videoList = require("../models/videoList");
 
 exports.getMovieList = (req, res) => {
   movieList.fetchAll((movieList) => {
@@ -54,4 +55,42 @@ exports.getMovieGenre = (req, res, next) => {
       });
     });
   });
+};
+
+exports.getMovieTrailer = (req, res, next) => {
+  const movieId = +req.params.movieId;
+  if (req.params.movieId === undefined) {
+    res.status(400).send("Not found film_id param");
+  } else {
+    let videos = [];
+    let videoTrailer = [];
+    videoList.fetchAll((videoList) => {
+      const videoOfMovie = videoList.filter((movie) => movie.id === movieId)[0];
+      if (!videoOfMovie) {
+        res.status(404).send("Not found video");
+      } else {
+        videos = videoOfMovie.videos.filter(
+          (video) =>
+            video.official === true &&
+            video.site === "YouTube" &&
+            (video.type === "Trailer" || video.type === "Teaser")
+        );
+
+        let a = videos.filter((video) => video.type === "Trailer");
+        if (a.length > 0) {
+          videoTrailer = a;
+        } else videoTrailer = videos;
+
+        videoTrailer.sort((a, b) => {
+          var c = new Date(a.published_at);
+          var d = new Date(b.published_at);
+          return d - c;
+        });
+
+        if (videoTrailer.length > 0) {
+          res.status(200).send(videoTrailer[0]);
+        }
+      }
+    });
+  }
 };
