@@ -107,3 +107,30 @@ exports.getMovieTrailer = (req, res, next) => {
     });
   }
 };
+
+exports.getMovieSearch = (req, res, next) => {
+  const movieSearch = [];
+  const page = req.params.page;
+  if (req.params.search === undefined) {
+    res.status(400).send("Not found keyword param");
+  } else {
+    const search = req.params.search.toLowerCase();
+    movieList.fetchAll((movieList) => {
+      movieList.forEach((movie) => {
+        if (movie.title !== undefined && movie.overview !== undefined) {
+          const a =
+            movie.title.toLowerCase().search(search) !== -1 ||
+            movie.overview.toLowerCase().search(search) !== -1;
+          if (a === true) {
+            movieSearch.push(movie);
+          }
+        }
+      });
+      res.status(200).send({
+        results: movieSearch.slice(page * 20 - 20, page * 20),
+        page: page,
+        total_pages: movieSearch.length / 20,
+      });
+    });
+  }
+};

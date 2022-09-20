@@ -20,4 +20,7 @@ router.get("/movies/discover/:page/", movieListController.getMovieGenre);
 router.get("/movies/video/:movieId", movieListController.getMovieTrailer);
 router.get("/movies/video/", movieListController.getMovieTrailer);
 
+router.get("/movies/:page/:search", movieListController.getMovieSearch);
+router.get("/movies/:page/", movieListController.getMovieSearch);
+
 module.exports = router;
