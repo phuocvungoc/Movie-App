@@ -11,4 +11,9 @@ router.get("/movies/trending/:page", movieListController.getMovieTrending);
 
 router.get("/movies/top-rate/:page", movieListController.getMovieTopRate);
 
+router.get(
+  "/movies/discover/:genreId/:page",
+  movieListController.getMovieGenre
+);
+
 module.exports = router;
