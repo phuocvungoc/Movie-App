@@ -1,26 +1,25 @@
 const express = require("express");
-
 const router = express.Router();
 
-const movieListController = require("../controllers/movie");
+const movieController = require("../controllers/movie");
 
-// /admin/products => GET
-router.get("/movies", movieListController.getMovieList);
+router.get("/movies/trending/", movieController.getMoviesTrending);
+router.get("/movies/trending/:page", movieController.getMoviesTrending);
 
-router.get("/movies/trending/:page", movieListController.getMovieTrending);
-
-router.get("/movies/top-rate/:page", movieListController.getMovieTopRate);
+router.get("/movies/top-rate", movieController.getMoviesTopRate);
+router.get("/movies/top-rate/:page", movieController.getMoviesTopRate);
 
 router.get(
-  "/movies/discover/:page/:genreId",
-  movieListController.getMovieGenre
+  "/movies/discover/:genreId/:page",
+  movieController.getMoviesDiscover
 );
-router.get("/movies/discover/:page/", movieListController.getMovieGenre);
+router.get("/movies/discover/:genreId", movieController.getMoviesDiscover);
+router.get("/movies/discover/", movieController.getMoviesDiscover);
 
-router.get("/movies/video/:movieId", movieListController.getMovieTrailer);
-router.get("/movies/video/", movieListController.getMovieTrailer);
+router.get("/movies/video/:movieId", movieController.getMovieTrailer);
+router.get("/movies/video", movieController.getMovieTrailer);
 
-router.get("/movies/:page/:search", movieListController.getMovieSearch);
-router.get("/movies/:page/", movieListController.getMovieSearch);
+router.get("/movies/search/:keyword", movieController.getMovieSearch);
+router.get("/movies/search/", movieController.getMovieSearch);
 
 module.exports = router;

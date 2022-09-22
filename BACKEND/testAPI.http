@@ -6,5 +6,5 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/api/movies/trending/1
+GET http://localhost:5000/api/movies/trending/
 Authorization: Beaer eyJhbGciOiJIUzI1NiJ9.VXNlciAwMQ.1wjs8SeX3txl0azFJGkKLHuNGNl1T8bw0jCmrWivpSU
