@@ -1,0 +1,10 @@
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "userId" : "User 01"
+}
+
+###
+GET http://localhost:5000/api/movies/trending/1
+Authorization: Beaer eyJhbGciOiJIUzI1NiJ9.VXNlciAwMQ.1wjs8SeX3txl0azFJGkKLHuNGNl1T8bw0jCmrWivpSU
