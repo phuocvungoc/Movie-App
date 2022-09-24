@@ -1,21 +1,3 @@
-# react-movie
-
-    Responsive React Movies App With API
-
-# Video tutorial
-
-    https://youtu.be/ntYXj9W1Ez8
-
-# Resource
-
-    Google font: https://fonts.google.com/
-
-    Boxicons: https://boxicons.com/
-
-    Images: https://unsplash.com/
-
-    API: https://www.themoviedb.org/
-
 # Preview
 
 !["Responsive React Movies App With API"](https://user-images.githubusercontent.com/67447840/136721197-be990f3a-cae2-4757-9eb7-c0796f4a3834.png "Responsive React Movies App With API")
