@@ -122,3 +122,21 @@ exports.getMovieSearch = (req, res, next) => {
     });
   }
 };
+
+exports.getMovieId = (req, res, next) => {
+  if (req.params.id === undefined) {
+    res.status(404).send("Not found this movie id");
+  } else {
+    let movie;
+    const id = +req.params.id;
+    moviesList.fetchAll((moviesList) => {
+      movie = moviesList.filter((movie) => movie.id === id)[0];
+
+      if (movie) {
+        res.status(200).send(movie);
+      } else {
+        res.status(404).send("Not found this movie id");
+      }
+    });
+  }
+};

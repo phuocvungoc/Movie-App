@@ -1,29 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { useParams } from "react-router";
-
 import tmdbApi from "../../api/tmdbApi";
 
 const VideoList = (props) => {
-  const { category } = useParams();
-
-  const [videos, setVideos] = useState([]);
+  const [video, setVideo] = useState([]);
 
   useEffect(() => {
     const getVideos = async () => {
-      const res = await tmdbApi.getVideos(category, props.id);
-      setVideos(res.results.slice(0, 5));
+      const res = await tmdbApi.getVideos(props.id);
+      console.log(res);
+      setVideo(res);
     };
     getVideos();
-  }, [category, props.id]);
-
-  return (
-    <>
-      {videos.map((item, i) => (
-        <Video key={i} item={item} />
-      ))}
-    </>
-  );
+  }, [props.id]);
+  if (video !== null) {
+    return <Video item={video} />;
+  } else
+    return (
+      <div>
+        <h1>Not Found Video!</h1>
+      </div>
+    );
 };
 
 const Video = (props) => {
