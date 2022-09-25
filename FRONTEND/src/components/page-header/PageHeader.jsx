@@ -12,7 +12,11 @@ const PageHeader = (props) => {
     const getGenreList = async () => {
       let response = null;
       response = await tmdbApi.getGenreList();
-      if (props.category === "trending" || props.category === "top-rate") {
+      if (
+        props.category === "trending" ||
+        props.category === "top-rate" ||
+        props.category === "search"
+      ) {
         setCategory(props.category);
       } else {
         let data = response.find((item) => item.id === Number(props.category));

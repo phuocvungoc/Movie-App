@@ -25,7 +25,7 @@ const Home = () => {
         <div className="section mb-3">
           <div className="section__header mb-2">
             <h2>Trending Movies</h2>
-            <Link to="/category/trending">
+            <Link to="/movie/category/trending">
               <OutlineButton className="small">View more</OutlineButton>
             </Link>
           </div>
@@ -35,7 +35,7 @@ const Home = () => {
         <div className="section mb-3">
           <div className="section__header mb-2">
             <h2>Top Rated Movies</h2>
-            <Link to="/category/top-rate">
+            <Link to="/movie/category/top-rate">
               <OutlineButton className="small">View more</OutlineButton>
             </Link>
           </div>
@@ -45,7 +45,7 @@ const Home = () => {
           <div className="section mb-3" key={i}>
             <div className="section__header mb-2">
               <h2>{item.name}</h2>
-              <Link to={`/category/${item.id}`}>
+              <Link to={`/movie/category/${item.id}`}>
                 <OutlineButton className="small">View more</OutlineButton>
               </Link>
             </div>

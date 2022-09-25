@@ -11,3 +11,9 @@
     @content;
   }
 }
+
+@mixin pc {
+  @media only screen and (min-width: $tablet-width) {
+    @content;
+  }
+}
