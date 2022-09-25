@@ -32,8 +32,6 @@ const HeroSlide = () => {
     getMovies();
   }, []);
 
-  console.log(movieItem);
-
   return (
     <div className="hero-slide">
       <Swiper

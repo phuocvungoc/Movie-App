@@ -13,7 +13,7 @@ class Login extends Component {
         if (res.status == 200) {
           localStorage.setItem("accessToken", res.data.accessToken);
           alert("Login success!");
-          window.location.href = "http://localhost:3000/movies";
+          window.location.href = "http://localhost:3000/movie";
           return res.data;
         } else if (res.status === "401") {
           throw new Error("Something went wrong!");
