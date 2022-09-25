@@ -29,6 +29,14 @@ const tmdbApi = {
     const url = "/api/movies/" + type + "/" + page;
     return axiosClient.get(url);
   },
+  getGenreList: () => {
+    const url = "/api/movies/list-genre";
+    return axiosClient.get(url);
+  },
+  getGenre: (genreId, page) => {
+    const url = "/api/movies/discover/" + genreId + "/" + page;
+    return axiosClient.get(url);
+  },
   getTvList: (type, params) => {
     const url = "tv/" + tvType[type];
     return axiosClient.get(url, params);

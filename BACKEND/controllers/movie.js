@@ -48,7 +48,7 @@ exports.getMoviesDiscover = (req, res, next) => {
           res.status(200).send({
             results: moviesDiscover.slice((page - 1) * 20, page * 20),
             page: page,
-            total_pages: Math.ceil(moviesDiscover.length / 20),
+            total_page: Math.ceil(moviesDiscover.length / 20),
             genre_name: genre_name,
           });
         });
@@ -116,7 +116,7 @@ exports.getMovieSearch = (req, res, next) => {
         res.status(200).send({
           results: movieSearch.slice(page * 20 - 20, page * 20),
           page: page,
-          total_pages: movieSearch.length / 20,
+          total_page: movieSearch.length / 20,
         });
       }
     });
@@ -139,4 +139,10 @@ exports.getMovieId = (req, res, next) => {
       }
     });
   }
+};
+
+exports.getListGenre = (req, res, next) => {
+  genreList.fetchAll((genreList) => {
+    res.status(200).send(genreList);
+  });
 };

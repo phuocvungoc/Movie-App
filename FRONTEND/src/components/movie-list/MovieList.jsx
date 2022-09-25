@@ -19,18 +19,10 @@ const MovieList = (props) => {
   useEffect(() => {
     const getList = async () => {
       let response = null;
-      const params = {};
-
-      if (props.type !== "similar") {
-        switch (props.category) {
-          case category.movie:
-            response = await tmdbApi.getMoviesList(props.type, { params });
-            break;
-          default:
-            response = await tmdbApi.getTvList(props.type, { params });
-        }
+      if (props.type === "trending" || props.type === "top-rate") {
+        response = await tmdbApi.getMoviesList(props.type);
       } else {
-        response = await tmdbApi.similar(props.category, props.id);
+        response = await tmdbApi.getGenre(props.id, 1);
       }
       setItems(response.results);
     };

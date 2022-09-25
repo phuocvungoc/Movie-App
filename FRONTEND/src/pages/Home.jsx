@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { OutlineButton } from "../components/button/Button";
 import HeroSlide from "../components/hero-slide/HeroSlide";
 import MovieList from "../components/movie-list/MovieList";
 
-import { category, movieType, tvType } from "../api/tmdbApi";
+import tmdbApi, { category, movieType } from "../api/tmdbApi";
 
 const Home = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const getGenreList = async () => {
+      let response = null;
+      response = await tmdbApi.getGenreList();
+      setItems(response);
+    };
+    getGenreList();
+  }, []);
   return (
     <>
       <HeroSlide />
@@ -19,7 +29,7 @@ const Home = () => {
               <OutlineButton className="small">View more</OutlineButton>
             </Link>
           </div>
-          <MovieList category={category.movie} type={movieType.trending} />
+          <MovieList type={movieType.trending} />
         </div>
 
         <div className="section mb-3">
@@ -29,38 +39,19 @@ const Home = () => {
               <OutlineButton className="small">View more</OutlineButton>
             </Link>
           </div>
-          <MovieList category={category.movie} type={movieType.top_rate} />
+          <MovieList type={movieType.top_rate} />
         </div>
-
-        <div className="section mb-3">
-          <div className="section__header mb-2">
-            <h2>Action</h2>
-            <Link to="/movie">
-              <OutlineButton className="small">View more</OutlineButton>
-            </Link>
+        {items.map((item, i) => (
+          <div className="section mb-3" key={i}>
+            <div className="section__header mb-2">
+              <h2>{item.name}</h2>
+              <Link to={`/category/${item.id}`}>
+                <OutlineButton className="small">View more</OutlineButton>
+              </Link>
+            </div>
+            <MovieList type={item.name} id={item.id} />
           </div>
-          <MovieList category={category.movie} type={movieType.action} />
-        </div>
-
-        <div className="section mb-3">
-          <div className="section__header mb-2">
-            <h2>Adventure</h2>
-            <Link to="/movie">
-              <OutlineButton className="small">View more</OutlineButton>
-            </Link>
-          </div>
-          <MovieList category={category.movie} type={movieType.adventure} />
-        </div>
-
-        <div className="section mb-3">
-          <div className="section__header mb-2">
-            <h2>Documentary</h2>
-            <Link to="/movie">
-              <OutlineButton className="small">View more</OutlineButton>
-            </Link>
-          </div>
-          <MovieList category={category.movie} type={movieType.documentary} />
-        </div>
+        ))}
       </div>
     </>
   );

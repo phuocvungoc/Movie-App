@@ -21,8 +21,11 @@ const MovieGrid = (props) => {
   useEffect(() => {
     const getList = async () => {
       let response = null;
-      response = await tmdbApi.getMovieList(category, page);
-      console.log(response);
+      if (category === "trending" || category === "top-rate") {
+        response = await tmdbApi.getMovieList(category, page);
+      } else {
+        response = await tmdbApi.getGenre(category, page);
+      }
       setItems(response.results);
       setTotalPage(response.total_page);
     };
@@ -30,10 +33,15 @@ const MovieGrid = (props) => {
   }, [category]);
 
   const loadMore = async () => {
-    setPage(page + 1);
+    let pageNew = page + 1;
     let response = null;
-    response = await tmdbApi.getMovieList(category, page);
+    if (category === "trending" || category === "top-rate") {
+      response = await tmdbApi.getMovieList(category, pageNew);
+    } else {
+      response = await tmdbApi.getGenre(category, pageNew);
+    }
     setItems([...items, ...response.results]);
+    setPage(page + 1);
   };
 
   return (

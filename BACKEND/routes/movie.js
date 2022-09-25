@@ -16,6 +16,8 @@ router.get(
 router.get("/movies/discover/:genreId", movieController.getMoviesDiscover);
 router.get("/movies/discover/", movieController.getMoviesDiscover);
 
+router.get("/movies/list-genre", movieController.getListGenre);
+
 router.get("/movies/video/:movieId", movieController.getMovieTrailer);
 router.get("/movies/video", movieController.getMovieTrailer);
 
