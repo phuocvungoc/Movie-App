@@ -5,7 +5,7 @@ import { OutlineButton } from "../components/button/Button";
 import HeroSlide from "../components/hero-slide/HeroSlide";
 import MovieList from "../components/movie-list/MovieList";
 
-import tmdbApi, { category, movieType } from "../api/tmdbApi";
+import tmdbApi, { movieType } from "../api/tmdbApi";
 
 const Home = () => {
   const [items, setItems] = useState([]);

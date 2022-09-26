@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Detail from "../pages/detail/Detail";
@@ -17,6 +17,7 @@ const Routes = () => {
       <Route path="/movie/category/:category" exact component={MovieGrid} />
       <Route path="/movie/search/:page" exact component={MovieSearch} />
       <Route path="/movie/search/" exact component={MovieSearch} />
+      <Redirect to="/movie" />
     </Switch>
   );
 };

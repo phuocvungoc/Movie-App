@@ -1,21 +1,17 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useHistory, useParams } from "react-router";
-
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import "./movie-grid.scss";
 
 import MovieCard from "../movie-card/MovieCard";
 import PageHeader from "../page-header/PageHeader";
-import Button, { OutlineButton } from "../button/Button";
-import Input from "../input/Input";
+import { OutlineButton } from "../button/Button";
 
-import tmdbApi, { category, movieType, tvType } from "../../api/tmdbApi";
+import tmdbApi from "../../api/tmdbApi";
 
 const MovieGrid = (props) => {
   const [items, setItems] = useState([]);
-
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
-
   const { category } = useParams();
 
   useEffect(() => {
@@ -46,9 +42,6 @@ const MovieGrid = (props) => {
 
   return (
     <>
-      {/* <div className="section mb-3">
-        <MovieSearch category={props.category} keyword={keyword} />
-      </div> */}
       <PageHeader category={category} />
       <div className="movie-grid">
         {items.map((item, i) => (

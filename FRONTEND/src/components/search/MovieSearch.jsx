@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useHistory, useParams, useLocation } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router";
 
 import "./search.scss";
 
 import MovieCard from "../movie-card/MovieCard";
 import PageHeader from "../page-header/PageHeader";
-import Button, { OutlineButton } from "../button/Button";
+import { OutlineButton } from "../button/Button";
 
 import tmdbApi from "../../api/tmdbApi";
 
