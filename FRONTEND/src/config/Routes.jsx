@@ -15,7 +15,8 @@ const Routes = () => {
       <Route path="/movie" exact component={Home} />
       <Route path="/movie/id/:id" exact component={Detail} />
       <Route path="/movie/category/:category" exact component={MovieGrid} />
-      <Route path="/movie/search" exact component={MovieSearch} />
+      <Route path="/movie/search/:page" exact component={MovieSearch} />
+      <Route path="/movie/search/" exact component={MovieSearch} />
     </Switch>
   );
 };

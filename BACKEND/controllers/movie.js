@@ -146,3 +146,59 @@ exports.getListGenre = (req, res, next) => {
     res.status(200).send(genreList);
   });
 };
+
+exports.getMovieSearchList = (req, res, next) => {
+  const { category, mediaType, language, year, keyword } = req.query;
+  const movieSearch = [];
+  const page = req.params.page || 1;
+  moviesList.fetchAll((moviesList) => {
+    moviesList.forEach((movie) => {
+      if (
+        (movie.name !== undefined ||
+          movie.title !== undefined ||
+          movie.overview !== undefined) &&
+        movie.genre_ids !== undefined
+      ) {
+        const cKeyword =
+          keyword === "" ||
+          movie.name?.toLowerCase().includes(keyword.toLowerCase()) ||
+          movie.title?.toLowerCase().includes(keyword.toLowerCase()) ||
+          movie.overview?.toLowerCase().includes(keyword.toLowerCase());
+
+        const cCategory =
+          category === "category" || movie.genre_ids.includes(Number(category));
+
+        const cMedia =
+          mediaType === "mediaType" ||
+          mediaType === "all" ||
+          movie.media_type === mediaType;
+
+        const cLanguage =
+          language === "language" || movie.original_language === language;
+
+        const cYear =
+          year === "" ||
+          new Date(movie.release_date).getFullYear() === Number(year);
+
+        if (cKeyword && cCategory && cMedia && cLanguage && cYear) {
+          movieSearch.push(movie);
+        }
+      }
+      if (mediaType === "person") {
+        if (movie.media_type === mediaType) {
+          movieSearch.push(movie);
+        }
+      }
+    });
+
+    if (movieSearch.length === 0) {
+      res.status(404).send("Not found video!");
+    } else {
+      res.status(200).send({
+        results: movieSearch.slice(page * 20 - 20, page * 20),
+        page: page,
+        total_page: Math.ceil(movieSearch.length / 20),
+      });
+    }
+  });
+};

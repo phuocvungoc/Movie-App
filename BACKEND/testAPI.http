@@ -20,3 +20,7 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiJ9.VXNlciAwMQ.1wjs8SeX3txl0azFJGkKLHuNGNl
 ###
 GET http://localhost:5000/api/movies/discover/28
 Authorization: Beaer eyJhbGciOiJIUzI1NiJ9.VXNlciAwMQ.1wjs8SeX3txl0azFJGkKLHuNGNl1T8bw0jCmrWivpSU
+
+###
+GET http://localhost:5000/api/movies/search-list/1/?category=category&mediaType=person&language=language&year=&keyword=
+Authorization: Beaer eyJhbGciOiJIUzI1NiJ9.VXNlciAwMQ.1wjs8SeX3txl0azFJGkKLHuNGNl1T8bw0jCmrWivpSU

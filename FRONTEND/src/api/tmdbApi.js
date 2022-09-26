@@ -33,6 +33,10 @@ const tmdbApi = {
     const url = "/api/movies/list-genre";
     return axiosClient.get(url);
   },
+  getSearchList: (category, mediaType, language, year, keyword, page) => {
+    const url = `/api/movies/search-list/${page}/?category=${category}&mediaType=${mediaType}&language=${language}&year=${year}&keyword=${keyword}`;
+    return axiosClient.get(url);
+  },
   getGenre: (genreId, page) => {
     const url = "/api/movies/discover/" + genreId + "/" + page;
     return axiosClient.get(url);

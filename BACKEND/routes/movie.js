@@ -24,6 +24,8 @@ router.get("/movies/video", movieController.getMovieTrailer);
 router.get("/movies/search/:keyword", movieController.getMovieSearch);
 router.get("/movies/search/", movieController.getMovieSearch);
 
+router.get("/movies/search-list/:page/", movieController.getMovieSearchList);
+
 router.get("/movies/movieId/:id", movieController.getMovieId);
 
 module.exports = router;
