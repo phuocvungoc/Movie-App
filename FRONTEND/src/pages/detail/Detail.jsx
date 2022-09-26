@@ -45,8 +45,32 @@ const Detail = () => {
           </div>
           <div className="movie-content__info">
             <h1 className="title">{item.title || item.name}</h1>
-
             <p className="overview">{item.overview}</p>
+            <div className="cast">
+              <div className="section__header section-item">
+                <h2>Additional information</h2>
+              </div>
+              <div className="section__header section-item">
+                <h3>Popularity</h3>
+                <h4>{item.popularity}</h4>
+                <i className="fa fa-envelope-open-o" aria-hidden="true"></i>
+              </div>
+              <div className="section__header section-item">
+                <h3>Release Date</h3>
+                <h4>{item.release_date}</h4>
+                <i className="fa fa-envelope-open-o" aria-hidden="true"></i>
+              </div>
+              <div className="section__header section-item">
+                <h3>Rating</h3>
+                <h4>{item.vote_average}</h4>
+                <i className="fa fa-envelope-open-o" aria-hidden="true"></i>
+              </div>
+              <div className="section__header section-item">
+                <h3>Vote Count</h3>
+                <h4>{item.vote_count}</h4>
+                <i className="fa fa-envelope-open-o" aria-hidden="true"></i>
+              </div>
+            </div>
           </div>
         </div>
         <div className="container">

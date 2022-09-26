@@ -28,6 +28,10 @@
   }
 }
 
+.section-item {
+  margin-top: 2rem;
+}
+
 .movie-content {
   @include flex(flex-start, flex-start);
   max-width: 1260px;
